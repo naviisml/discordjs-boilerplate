@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-bot",
+  "version": "1.0.0",
+  "description": "A nodejs bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "author": "Navi",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.12.31",
+    "ascii-tables": "0.0.1",
+    "discord.js": "^12.0.2",
+    "fs": "0.0.1-security",
+    "ms": "^2.1.2"
+  },
+  "devDependencies": {
+    "@discordjs/builders": "^0.13.0",
+    "@discordjs/rest": "^0.4.1",
+    "ascii-table": "^0.0.9",
+    "discord-api-types": "^0.32.0"
+  }
+}
