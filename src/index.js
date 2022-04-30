@@ -21,7 +21,7 @@ client.commands = new Collection()
 client.interactions = new Collection()
 client.aliases = new Collection()
 
-const collections = ["interactionCreate", "aliases", "commands"]
+const collections = ["interactions", "aliases", "commands"]
 
 collections.forEach(x => (client[x] = new Collection()))
 

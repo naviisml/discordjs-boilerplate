@@ -21,6 +21,6 @@ module.exports = {
             .setColor("#3498DB")
         
         // And finally we return the embed
-        return message.channel.send(embed)
+        return message.channel.send({ embeds: [ embed ] })
     }
 }

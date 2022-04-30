@@ -4,9 +4,8 @@
 
 - Rich configuration
 - Commands
-	- ~~Intergrated Slash Commands support~~
+- Interactions (Slash Commands)
 - Events
-- 
 
 ## Usage
 

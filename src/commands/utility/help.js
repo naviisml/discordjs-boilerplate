@@ -7,7 +7,7 @@ const path = require('path')
 const config = require("../../../config.json")
 
 // Now, we require the MessageEmbed constructor from discord.js for making beautiful messages.
-const {MessageEmbed} = require("discord.js")
+const { MessageEmbed } = require("discord.js")
 
 module.exports = { // All of these properties should be added in every command
     name: "Help", // The name of the command. It can be whatever
@@ -32,7 +32,9 @@ module.exports = { // All of these properties should be added in every command
             let embed = new MessageEmbed()
                 .setTitle(`Help`)
                 .setColor("#3498DB")
-                .setFooter(`Do ${config.prefix}help (command) for getting more information`)
+                .setFooter({
+                    text: `Do ${config.prefix}help (command) for getting more information`
+                })
 
             // For each category, we will add a field with the category's name and commands
             categories.forEach(category => {
@@ -51,7 +53,7 @@ module.exports = { // All of these properties should be added in every command
             })
 
             // And finally we return the embed
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [ embed ] })
         }
 
         // If the user did provide args, execute this.
@@ -88,9 +90,11 @@ module.exports = { // All of these properties should be added in every command
                 .addField(`Accessible by`, `${cmd.accessible || "None"}`)
                 .addField(`Aliases`, `${cmdAliases || "None"}`) // If the command has aliases, write them all separated by commas, if it doesnt have any, write "None".
                 .setColor("#3498DB")
-                .setFooter(`In the usage field, arguments between round brackets are required, and arguments between square brackets are optional.`)
+                .setFooter({
+                    text: `In the usage field, arguments between round brackets are required, and arguments between square brackets are optional.`
+                })
 
-            return message.channel.send(embed)
+            return message.channel.send({ embeds: [ embed ] })
         }
     }
 }

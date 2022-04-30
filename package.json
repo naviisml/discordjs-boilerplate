@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-bot",
+  "name": "discordjs-boilerplate",
   "version": "1.0.0",
   "description": "A nodejs bot",
   "main": "index.js",
