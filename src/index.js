@@ -26,7 +26,7 @@ const collections = ["interactionCreate", "aliases", "commands"]
 collections.forEach(x => (client[x] = new Collection()))
 
 // Loading handlers
-const handlers = ["command", "event"]
+const handlers = ["interactions", "command", "event"]
 
 handlers.forEach(handler => {
     require(`./handlers/${handler}`)(client)
