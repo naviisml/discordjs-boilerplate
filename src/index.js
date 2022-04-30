@@ -6,8 +6,9 @@ if (Number(process.version.slice(1).split(".")[0]) < 12) throw new Error("Node 1
 
 // First, we require discord.js's Client and Collection constructors
 const { Client, Collection } = require("discord.js")
+
 // Now, we initialize a new discord.js Client
-const client = new Client()
+const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES"] })
 
 // Now, we need to require fs (FileSystem) for assigning commands, events, etc...
 const fs = require('fs')
@@ -15,11 +16,12 @@ const fs = require('fs')
 // Next, require our config.json file containing the bot's token 
 const config = require("../config.json")
 
-// Now, we create 2 Collections; Commands and Aliases. This are the roots of our command handler
+// Now, we create 3 Collections; Commands, Interactions and Aliases. This are the roots of our command handler
 client.commands = new Collection()
+client.interactions = new Collection()
 client.aliases = new Collection()
 
-const collections = ["aliases", "commands"]
+const collections = ["interactionCreate", "aliases", "commands"]
 
 collections.forEach(x => (client[x] = new Collection()))
 
