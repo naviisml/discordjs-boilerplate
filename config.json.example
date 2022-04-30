@@ -1,0 +1,15 @@
+{
+    "name": "My Awesome Bot",
+    "status": "Use .help",
+    "website": "https://navel.dev",
+    "prefix" : ".",
+    "debug": false,
+
+    "chatCommands": false,
+    "slashCommands": true,
+
+    "token" : "<SECRET-BOT-TOKEN>",
+
+    "clientId": "<BOT-APPLICATION-ID>",
+    "guildId": "<SERVER-ID>"
+}
