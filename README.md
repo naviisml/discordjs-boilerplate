@@ -4,7 +4,9 @@
 
 - Rich configuration
 - Commands
-- Interactions (Slash Commands)
+- Interactions
+	- Slash Commands
+	- Buttons
 - Events
 
 ## Usage
@@ -16,9 +18,19 @@ npm start
 ## Deploy Commands
 
 ```
-node ./scripts/deploy-commands.js
+npm deploy-commands
 ```
 
 ```
-node ./scripts/remove-commands.js
+npm deploy-guild-commands
+```
+
+## Remove Commands
+
+```
+npm remove-commands
+```
+
+```
+npm remove-guild-commands
 ```

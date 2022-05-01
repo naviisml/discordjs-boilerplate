@@ -4,7 +4,9 @@
   "description": "A nodejs bot",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "deploy-commands": "node src/index.js",
+    "deploy-guild-commands": "node src/index.js"
   },
   "engines": {
     "node": ">=12"
