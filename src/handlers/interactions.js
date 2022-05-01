@@ -4,7 +4,8 @@ const ascii = require('ascii-table')
 const path = require('path')
 
 // the command folders
-const folders = ["utility"]
+const commands = ["utility"]
+
 // the button folders
 const buttons = ["utility"]
 
