@@ -10,7 +10,7 @@ module.exports = client => {
     client.user.setActivity(config.status, {
         type: 'PLAYING',
         url: config.website
-    });
+    })
 
     console.info("Bot [" + client.user.username + "] is online!")
 }
