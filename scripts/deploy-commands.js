@@ -16,6 +16,11 @@ table.setHeading("Interaction", "Load Status")
 // define the slash commands
 const slashCommands = []
 
+// define the required command parameters
+const parameters = [
+	"name", "command", "description", "category"
+]
+
 // Lets get all the subfolders of the "commands" folder
 folders.forEach(dir => {
 	const commands = readdirSync(path.join(__dirname, `../src/interactions/commands/${dir}/`)).filter(d => d.endsWith(".js"))
@@ -23,27 +28,32 @@ folders.forEach(dir => {
 	for (let file of commands) {
 		// Now, we will get every command from every subfolder
 		let command = require(`../src/interactions/commands/${dir}/${file}`)
+		let status = true
 
-		// We check if the command has a configuration
-		if(command.name) {
+		// We check if the command has a proper configuration
+		for (var i = 0; i < parameters.length; i++) {
+			if (!command[parameters[i]]) {
+				// If the command doesn't have a valid configuration, add another row showing the error
+				table.addRow(file, `❌ --> ${file} is missing [${parameters[i]}] parameter`)
+				status = false
+			}
+		}
+
+		if (status == true) {
 			// If it does, add a row to the table and finally set the command
 			table.addRow(file, '✔️')
-
+			
 			let slashCommand = new SlashCommandBuilder()
 				.setName(command.command)
 				.setDescription(command.description)
 
 			// execute callback from file with button
 			if (typeof command.build == 'function') {
-				command.build(slashCommand)
+				slashCommand = command.build(slashCommand)
 			}
-			
+
 			// add command to table
 			slashCommands.push(slashCommand)
-		} else {
-			// If the command doesn't have a valid configuration, add another row showing the error
-			table.addRow(file, `❌ --> Missing ${file}.name or ${file}.name is not a string`)
-			continue
 		}
 	}
 })
