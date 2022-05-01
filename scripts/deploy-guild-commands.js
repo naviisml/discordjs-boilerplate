@@ -7,7 +7,7 @@ const ascii = require('ascii-table')
 const path = require('path')
 
 // define the command folders
-const folders = ["utility"]
+const folders = ["utility", "community"]
 
 // Initializing the table
 const table = new ascii("Interactions")
@@ -18,27 +18,28 @@ const slashCommands = []
 
 // Lets get all the subfolders of the "commands" folder
 folders.forEach(dir => {
-	const commands = readdirSync(path.join(__dirname, `../src/interactions/${dir}/`)).filter(d => d.endsWith(".js"))
+	const commands = readdirSync(path.join(__dirname, `../src/interactions/commands/${dir}/`)).filter(d => d.endsWith(".js"))
 
 	for (let file of commands) {
 		// Now, we will get every command from every subfolder
-		let pull = require(`../src/interactions/${dir}/${file}`)
-		
+		let command = require(`../src/interactions/commands/${dir}/${file}`)
+
 		// We check if the command has a configuration
-		if(pull.name) {
+		if(command.name) {
 			// If it does, add a row to the table and finally set the command
 			table.addRow(file, '✔️')
-			
-			// build the command
-			let command = new SlashCommandBuilder()
 
-			command.setName(pull.command)
-			command.setDescription(pull.description)
+			let slashCommand = new SlashCommandBuilder()
+				.setName(command.command)
+				.setDescription(command.description)
 
-			// todo: ad more options
+			// execute callback from file with button
+			if (typeof command.build == 'function') {
+				slashCommand = command.build(slashCommand)
+			}
 
 			// add command to table
-			slashCommands.push(command)
+			slashCommands.push(slashCommand)
 		} else {
 			// If the command doesn't have a valid configuration, add another row showing the error
 			table.addRow(file, `❌ --> Missing ${file}.name or ${file}.name is not a string`)
