@@ -19,16 +19,20 @@ const config = require("../config.json")
 // create the collections for the bot
 const collections = ["interactions", "buttons", "aliases", "commands"]
 
-collections.forEach(x => (client[x] = new Collection()))
+collections.forEach(name => {
+    console.debug(`Created [${name}] collection`)
+
+    client[name] = new Collection()
+})
 
 // Loading handlers
 const handlers = ["interactions", "command", "event"]
 
 handlers.forEach(handler => {
+    console.debug(`Loading [${handler}] handler`)
+
     require(`./handlers/${handler}`)(client)
 })
 
 // Finally, we login and set an activity
 client.login(config.token)
-
-
