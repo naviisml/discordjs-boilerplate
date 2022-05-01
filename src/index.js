@@ -16,12 +16,8 @@ const fs = require('fs')
 // Next, require our config.json file containing the bot's token 
 const config = require("../config.json")
 
-// Now, we create 3 Collections; Commands, Interactions and Aliases. This are the roots of our command handler
-client.commands = new Collection()
-client.interactions = new Collection()
-client.aliases = new Collection()
-
-const collections = ["interactions", "aliases", "commands"]
+// create the collections for the bot
+const collections = ["interactions", "buttons", "aliases", "commands"]
 
 collections.forEach(x => (client[x] = new Collection()))
 
